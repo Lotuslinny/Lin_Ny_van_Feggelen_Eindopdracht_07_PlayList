@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SongForm from "./Components/SongForm";
+import SongList from "./Components/SongList";
 
 class SongOverview extends Component {
 
@@ -7,21 +8,42 @@ class SongOverview extends Component {
     super(props)
     this.state =
     {
-      songs: [],
-
+      songs: [
+        { type: "song", id: 1, title: "Title" },
+        { type: "song", id: 2, title: "Artist" },
+        { type: "song", id: 3, title: "Genre" },
+        { type: "song", id: 4, title: "Rating" }
+      ],
     }
     this.addSong = this.addSong.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
   }
   addSong = () => {
-    console.log("hoi")
+    alert("hoi")
   }
   handleOnChange = () => {
     console.log("oh nee")
   }
 
   // doe iets om de state aan te passen. 
-
+  /*
+   1. Kijk eens wat in de parameter song staat (console.log)
+   2. Kun je daar meteen wat mee, of moet je iets doen om het leesbaar te maken?
+   3. Zodra je toegang hebt tot de stukjes uit song (Song, Artist, Genre, Rating)
+   kun je iets met deze stukjes doen. Individueel, of als groep. (console.log? ;) )
+   4. Zou je de stukjes in een bepaalde volgorde in een nieuwe regel in een state 
+   kunnen zetten?
+   5. Kun je deze state dan ook weer uitlezen? (console.log)
+   6. Zodra dat is gelukt, kijk eens of je ook nog regel kan 
+   toevoegen (hint, nog een keer op de knop add song drukken)
+   7. Kun je nu ook de toegevoegde regel zien in state?
+   8. Love you, je kan het!
+ 
+   p.s. Ben je hierboven eigenlijk niet al stiekem de song list aan het maken, 
+   waar songs in staan? En is de volgende stap niet dat je waardes uit de state 
+   moet weergeven in een list/table view? 
+   De ene component voegt wat toe aan de state, de andere leest em uit. 
+   */
 
 
 
@@ -32,7 +54,7 @@ class SongOverview extends Component {
           addSong={this.addSong}
           handleOnChange={this.handleOnChange}
         />
-        {/* <SongList songs={this.state.songs} /> */}
+        <SongList songs={this.state.songs} />
       </div >
     );
   }
