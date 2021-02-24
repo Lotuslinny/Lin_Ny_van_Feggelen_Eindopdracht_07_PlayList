@@ -8,22 +8,41 @@ class SongOverview extends Component {
     super(props)
     this.state =
     {
-      songs: [
-        { type: "song", id: 1, title: "Title" },
-        { type: "song", id: 2, title: "Artist" },
-        { type: "song", id: 3, title: "Genre" },
-        { type: "song", id: 4, title: "Rating" }
-      ],
+      songs: [{ id: 1, artist: "", song: "", genre: "", rating: "" }
+      ]
     }
     this.addSong = this.addSong.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+
   }
-  addSong = () => {
-    alert("hoi")
+  addSong = (event) => {
+    const { artist, song, genre, rating, songs } = this.state
+    event.preventDefault()
+
+    songs.push({ artist, song, genre, rating })
+    this.setState({
+      id: this.createTd(),
+      artist: this.createTd(),
+      song: this.createTd(),
+      genre: this.createTd(),
+      rating: this.createTd(),
+      songs: songs
+    })
   }
-  handleOnChange = () => {
-    console.log("oh nee")
+  handleOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
+  createTd = () => {
+    const newSong = {
+      id: this.state.songs.length + 1,
+    }
+    return newSong
+  }
+
+
+
 
   // doe iets om de state aan te passen. 
   /*
@@ -38,7 +57,7 @@ class SongOverview extends Component {
    toevoegen (hint, nog een keer op de knop add song drukken)
    7. Kun je nu ook de toegevoegde regel zien in state?
    8. Love you, je kan het!
- 
+   
    p.s. Ben je hierboven eigenlijk niet al stiekem de song list aan het maken, 
    waar songs in staan? En is de volgende stap niet dat je waardes uit de state 
    moet weergeven in een list/table view? 
@@ -54,7 +73,19 @@ class SongOverview extends Component {
           addSong={this.addSong}
           handleOnChange={this.handleOnChange}
         />
-        <SongList songs={this.state.songs} />
+        <table style={{ width: "100%" }}>
+          <tbody>
+            <tr>
+              <th>Artist</th>
+              <th>Song</th>
+              <th>Genre</th>
+              <th>Rating</th>
+            </tr>
+          </tbody>
+        </table>
+        <SongList
+          songs={this.state.songs}
+        />
       </div >
     );
   }
