@@ -8,24 +8,28 @@ class SongOverview extends Component {
     super(props)
     this.state =
     {
-      songs: [{ id: 1, artist: "", song: "", genre: "", rating: "" }
+      songs: [{ id: 0, artist: "", song: "", genre: "", rating: "" }
       ]
     }
     this.addSong = this.addSong.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
 
   }
-  addSong = (event) => {
-    const { artist, song, genre, rating, songs } = this.state
-    event.preventDefault()
 
-    songs.push({ artist, song, genre, rating })
+
+  addSong = (event) => {
+    const { id, artist, song, genre, rating, songs } = this.state
+    event.preventDefault()
+    // get hoogste id nummer, doe id + 1
+    // returns integer
+    const newId = this.state.songs.length + 1;
+    songs.push({ id, artist, song, genre, rating })
     this.setState({
-      id: this.createTd(),
-      artist: this.createTd(),
-      song: this.createTd(),
-      genre: this.createTd(),
-      rating: this.createTd(),
+      id: "",
+      artist: "",
+      song: "",
+      genre: "",
+      rating: "",
       songs: songs
     })
   }
@@ -34,12 +38,7 @@ class SongOverview extends Component {
       [event.target.name]: event.target.value
     })
   }
-  createTd = () => {
-    const newSong = {
-      id: this.state.songs.length + 1,
-    }
-    return newSong
-  }
+
 
 
 
@@ -75,7 +74,7 @@ class SongOverview extends Component {
         />
         <table style={{ width: "100%" }}>
           <tbody>
-            <tr>
+            <tr key="hello">
               <th>Artist</th>
               <th>Song</th>
               <th>Genre</th>
@@ -84,6 +83,7 @@ class SongOverview extends Component {
           </tbody>
         </table>
         <SongList
+
           songs={this.state.songs}
         />
       </div >
