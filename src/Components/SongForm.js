@@ -22,12 +22,13 @@ const SongForm = (props) => {
           value={props.genre}
           onChange={props.handleOnChange}
         />
-        <input
-          name="rating"
-          placeholder="Rating"
-          value={props.rating}
-          onChange={props.handleOnChange}
-        />
+        <select value={props.rating} onChange={props.handleOnChange} name="rating">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
         <button>Add song to list</button>
       </div>
     </form>

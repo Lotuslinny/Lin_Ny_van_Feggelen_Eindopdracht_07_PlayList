@@ -1,21 +1,17 @@
 import React from "react";
 
 const SongList = (props) => {
-  return props.songs.map((songs, index) => {
-    const { artist, song, genre, rating } = songs
+
+  return props.songs.map((songs) => {
+    const { id, artist, song, genre, rating } = songs
     return (
-      <div>
-        <table style={{ width: "100%" }}>
-          <tbody>
-            <tr key={index}>
-              <td >{artist}</td>
-              <td >{song}</td>
-              <td >{genre}</td>
-              <td >{rating}</td>
-            </tr>
-          </tbody>
-        </table >
-      </div >
+      <tr key={id}>
+        <td >{artist}</td>
+        <td >{song}</td>
+        <td >{genre}</td>
+        <td >{rating}</td>
+        <td onClick={() => props.deleteSong({ id })}><img width="12px" height="12px" src='https://www.iconsdb.com/icons/preview/black/delete-xxl.png'></img></td>
+      </tr>
     )
   })
 }
