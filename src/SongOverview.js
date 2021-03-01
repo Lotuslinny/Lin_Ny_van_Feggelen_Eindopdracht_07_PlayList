@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import SongForm from "./Components/SongForm";
 import SongList from "./Components/SongList";
+// Comments can be read in the commit "Comments"
 
 class SongOverview extends Component {
-
   constructor(props) {
     super(props)
     this.state =
@@ -39,18 +39,12 @@ class SongOverview extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.deleteSong = this.deleteSong.bind(this);
     this.filterBy = this.filterBy.bind(this);
-    // Copy van the state.
     this.arr = this.state.songs;
   }
-  /* You cannot return false to prevent default
-   behavior in React. You must call preventDefault explicitly. */
 
   addSong = (event) => {
     const { id, artist, song, genre, rating, songs } = this.state
     event.preventDefault()
-    /* Math.max(find the highest id) +1 because you don't want 
-    to have delete 2 and 5 from a list of 8
-     ... and the new song with an id of 7 wich already exists. */
     const newId = Math.max(...this.state.songs.map(song => song.id)) + 1;
     songs.push({ id: newId, artist, song, genre, rating })
     this.setState({
@@ -62,17 +56,12 @@ class SongOverview extends Component {
       [event.target.name]: event.target.value
     })
   }
-  /* The findIndex() method returns the index of the first element
-  in the array that satisfies the provided testing function. 
-  Otherwise, it returns -1, indicating that no element passed the test. */
+
   deleteSong = (id) => {
     const songList = this.state.songs;
     let index = songList.findIndex(function (o) {
       return o.id === id.id;
     })
-    /* The splice("in this case":index,1 element,remove) method changes the contents of an array
-     by removing or replacing existing elements and/or 
-     adding new elements in place. */
     if (index !== -1) songList.splice(index, 1);
     this.setState({
       songs: songList
@@ -89,7 +78,6 @@ class SongOverview extends Component {
   }
 
   sortBy = (event) => {
-    // if a<b => a,b   if a>b => b,a, anders a,b
     const sortingBy = event.target.innerText.toLowerCase();
     const sortArray = this.arr;
     sortArray.sort((a, b) => {
@@ -102,9 +90,9 @@ class SongOverview extends Component {
       return 0;
     });
     this.arr = sortArray;
-    // this.setState () to schedule updates to the component local state
     this.setState({})
   }
+
 
   render() {
     return (
@@ -118,11 +106,11 @@ class SongOverview extends Component {
         <table style={{ width: "100%" }}>
           <tbody>
             <tr>
-              <th onClick={this.sortBy}>artist</th>
-              <th onClick={this.sortBy}>song</th>
-              <th onClick={this.sortBy}>genre</th>
-              <th onClick={this.sortBy}>rating</th>
-              <th ></th>
+              <th className="header" onClick={this.sortBy}>artist</th>
+              <th className="header" onClick={this.sortBy}>song</th>
+              <th className="header" onClick={this.sortBy}>genre</th>
+              <th className="header" onClick={this.sortBy}>rating</th>
+              <th className="header"></th>
             </tr>
 
             <SongList
@@ -131,7 +119,7 @@ class SongOverview extends Component {
             />
           </tbody>
         </table>
-        <p>
+        <p className="filterby">
           Click on table header to Sort and/ or Filter by: <select onChange={this.filterBy} name="genre" >
             <option key="All" value="All">All genres</option>
             {this.state.genreOptions.map((option) => (
@@ -140,21 +128,12 @@ class SongOverview extends Component {
           </select>
         </p>
       </div >
-
-
     );
   }
 }
 
 export default SongOverview;
 
-/*
-<select onChange={this.filterBy} name="genre">
-            <option value="All">Show all</option>
-            <option value="Pop">Pop</option>
-            <option value="Hip-Hop">Hip-Hop</option>
-            <option value="Nederlands">Nederlands</option>
-          </select>*/
 
 
 

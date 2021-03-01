@@ -2,8 +2,7 @@ import React from "react";
 
 const SongForm = (props) => {
   return (
-    //https://reactjs.org/docs/forms.html
-    <form onSubmit={props.addSong}>
+    <form className="form" onSubmit={props.addSong}>
       <div style={{ width: "100%" }}>
         <input
           name="artist"
