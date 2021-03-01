@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import SongForm from "./Components/SongForm";
 import SongList from "./Components/SongList";
-// Comments can be read in the commit "Comments"
 
+// Comments can be read in the commit "Comments"
+//console.log(Star);
 class SongOverview extends Component {
   constructor(props) {
     super(props)
