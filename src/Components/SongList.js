@@ -1,8 +1,8 @@
 import React from "react";
 
 const SongList = (props) => {
-
   return props.songs.map((songs) => {
+    // the tablerow is set 
     const { id, artist, song, genre, rating } = songs
     return (
       <tr key={id}>
@@ -10,7 +10,7 @@ const SongList = (props) => {
         <td >{song}</td>
         <td >{genre}</td>
         <td >{rating}</td>
-        <td onClick={() => props.deleteSong({ id })}><img width="12px" height="12px" src='https://www.iconsdb.com/icons/preview/black/delete-xxl.png'></img></td>
+        <td className="delete" onClick={() => props.deleteSong({ id })}>X</td>
       </tr>
     )
   })

@@ -2,6 +2,7 @@ import React from "react";
 
 const SongForm = (props) => {
   return (
+    //https://reactjs.org/docs/forms.html
     <form onSubmit={props.addSong}>
       <div style={{ width: "100%" }}>
         <input
@@ -16,18 +17,19 @@ const SongForm = (props) => {
           value={props.song}
           onChange={props.handleOnChange}
         />
-        <input
+        <select
           name="genre"
-          placeholder="Genre"
-          value={props.genre}
-          onChange={props.handleOnChange}
-        />
-        <select value={props.rating} onChange={props.handleOnChange} name="rating">
-          <option value="1">1 Star</option>
-          <option value="2">2 Stars</option>
-          <option value="3">3 Stars</option>
-          <option value="4">4 Stars</option>
-          <option value="5">5 Stars</option>
+          onChange={props.handleOnChange}>
+          {props.genreOptions.map((option) => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
+        </select>
+        <select
+          name="rating"
+          onChange={props.handleOnChange}>
+          {props.ratingOptions.map((option) => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
         </select>
         <button>Add song to list</button>
       </div>
